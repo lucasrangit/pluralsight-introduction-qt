@@ -1,7 +1,7 @@
 {
-  "applicationTitle": "Virtual Front Panel - Gating Controller",
-  "appShortname": "VFP",
-  "hostname": "localhost",
+  "applicationName": "Virtual Front Panel - Gating Controller",
+  "appShortName": "VFP",
+  "hostName": "localhost",
   "port": 23,
   "tcpLongWaitMs": 1000,
   "tcpShortWaitMs": 10,

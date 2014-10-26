@@ -2,6 +2,7 @@
 #include <QWidget>
 
 namespace Ps{
+
 class Utils
 {
 public:
@@ -11,10 +12,9 @@ public:
   static void DestructorMsg(const QObject * const object);
 
 private:
-    explicit Utils(const Utils& rhs) = delete;
-    Utils& operator= (const Utils& rhs) = delete;
+  // singleton
+  explicit Utils(const Utils& rhs);
+  Utils& operator= (const Utils& rhs);
 };
-}
 
-
-
+} // namespace

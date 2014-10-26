@@ -6,7 +6,7 @@ namespace Ps{
 class MainView;
 class SetupTab;
 
-class Startup final : public QObject
+class Startup : public QObject
 {
     Q_OBJECT
 public:
@@ -18,8 +18,9 @@ private:
     SetupTab& m_setupTab;
     MainView& m_mainView;
 
-    explicit Startup(const Startup& rhs) = delete;
-    Startup& operator= (const Startup& rhs) = delete;
+    // singleton
+    explicit Startup(const Startup& rhs);
+    Startup& operator= (const Startup& rhs);
 };
 }
 

@@ -11,8 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = VFP
 TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11
-
 SOURCES += main.cpp\
         View/mainview.cpp \
     View/setuptab.cpp \
