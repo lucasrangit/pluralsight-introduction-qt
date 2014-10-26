@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/root">
+        <file>Images/Clear32.png</file>
+        <file>Images/connect.png</file>
+        <file>Images/ControlPadW.png</file>
+        <file>Images/ocean.jpg</file>
+        <file>Images/Receive.png</file>
+        <file>Images/Send.png</file>
+        <file>Images/Setup.png</file>
+        <file>Images/StopRed16.png</file>
+        <file>Images/Syncor48.png</file>
+    </qresource>
+    <qresource prefix="/json">
+        <file>settings.json</file>
+    </qresource>
+</RCC>
