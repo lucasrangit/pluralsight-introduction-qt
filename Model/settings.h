@@ -27,9 +27,9 @@ private:
     QString m_applicationName;
     QString m_appShortName;
     QString m_hostName;
-    int64_t m_portNumber;
-    int64_t m_waitMs;
-    int64_t m_readWaitMs;
+    quint64 m_portNumber;
+    qint64 m_waitMs;
+    qint64 m_readWaitMs;
     QStringListModel& m_modelCommands;
 
     QString ReadJsonFile();

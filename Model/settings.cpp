@@ -18,6 +18,12 @@ static QString RESOURCE_PREFIX = QStringLiteral(":/json");
 Settings::Settings(QObject *parent, QString filename) :
     QObject(parent),
     m_filename(filename),
+    m_applicationName(""),
+    m_appShortName(""),
+    m_hostName("127.0.0.1"),
+    m_portNumber(555102),
+    m_waitMs(10*1000),
+    m_readWaitMs(1*1000),
     m_modelCommands(*new QStringListModel(this))
 {
 
