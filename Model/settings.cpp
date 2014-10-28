@@ -1,6 +1,7 @@
 #include <QString>
 #include <QDir>
 #include <QFile>
+#include <QStandardPaths>
 #include <QJsonParseError>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -22,8 +23,8 @@ Settings::Settings(QObject *parent, QString filename) :
     m_appShortName(""),
     m_hostName("127.0.0.1"),
     m_portNumber(555102),
-    m_waitMs(10*1000),
-    m_readWaitMs(1*1000),
+    m_tcpLongWaitMs(10*1000),
+    m_tcpShortWaitMs(1*1000),
     m_modelCommands(*new QStringListModel(this))
 {
 
@@ -46,9 +47,74 @@ void Settings::ParseJsonData()
     m_appShortName = json_obj["appShortName"].toString();
     m_hostName = json_obj["hostName"].toString();
     m_portNumber = json_obj["port"].toInt();
-    m_waitMs = json_obj["tcpLongWaitMs"].toInt();
-    m_readWaitMs = json_obj["tcpShortWaitMs"].toInt();
+    m_tcpLongWaitMs = json_obj["tcpLongWaitMs"].toInt();
+    m_tcpShortWaitMs = json_obj["tcpShortWaitMs"].toInt();
     SetupCommands(json_obj);
+}
+
+QString Settings::ReadJsonFile()
+{
+    QString default_settings = ReadJsonFileFromInternalResource();
+
+    QDir config_dir = OpenConfigDirectory();
+    QString path = config_dir.filePath(m_filename);
+    QFile std_file(path);
+    if (std_file.exists())
+    {
+        if (!std_file.open(QFile::ReadOnly|QFile::Text))
+        {
+            SendErrorMessage("Cound not open " + path);
+            return default_settings;
+        }
+        QString settings = std_file.readAll();
+        std_file.close();
+        return settings;
+    }
+    else
+    {
+        WriteDefaultsToStdConfigFile(std_file,default_settings);
+        return default_settings;
+    }
+}
+
+void Settings::WriteDefaultsToStdConfigFile(QFile& stdConfigFile,
+                                            const QString& settings)
+{
+    int length = settings.length();
+    if (!stdConfigFile.open(QFile::WriteOnly|QFile::Text))
+    {
+        SendErrorMessage("Could not open file to write " + stdConfigFile.fileName());
+    }
+    else
+    {
+        qint64 bytes_written = stdConfigFile.write(qPrintable(settings),length);
+        if (bytes_written != length)
+        {
+          SendErrorMessage("Could not write default settings to " + stdConfigFile.fileName());
+          if (!stdConfigFile.remove())
+          {
+              SendErrorMessage("Count not remove configuration file. Please delete " +
+                               stdConfigFile.fileName());
+          }
+        }
+        stdConfigFile.close();
+    }
+}
+
+QDir Settings::OpenConfigDirectory()
+{
+    QDir config_dir(QStandardPaths::writableLocation(
+                        QStandardPaths::ConfigLocation));
+    if (!config_dir.exists())
+    {
+        QDir dir;
+        if (!dir.mkdir(config_dir.path()))
+        {
+            SendErrorMessage("Could not create configuration directory");
+            abort();
+        }
+    }
+    return config_dir;
 }
 
 JsonObjErrPair Settings::GetJsonObject(const QString& raw_jason)
@@ -76,12 +142,6 @@ void Settings::ShowJsonParseError(QJsonParseError json_error)
    QString msg = tr("Error parsing JSON settings file.\n");
    msg.append(json_error.errorString());
    QMessageBox::critical(0,tr("VFP"),msg);
-}
-
-QString Settings::ReadJsonFile()
-{
-    QString default_settings = ReadJsonFileFromInternalResource();
-    return default_settings;
 }
 
 QString Settings::ReadJsonFileFromInternalResource()

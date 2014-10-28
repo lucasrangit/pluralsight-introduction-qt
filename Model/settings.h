@@ -28,20 +28,22 @@ private:
     QString m_appShortName;
     QString m_hostName;
     quint64 m_portNumber;
-    qint64 m_waitMs;
-    qint64 m_readWaitMs;
+    qint64 m_tcpLongWaitMs;
+    qint64 m_tcpShortWaitMs;
     QStringListModel& m_modelCommands;
 
     QString ReadJsonFile();
     QString ReadJsonFileFromInternalResource();
-
-    // singleton
-    explicit Settings(const Settings& rhs);
-    Settings& operator= (const Settings& rhs);
     void SendErrorMessage(const QString &msg);
     JsonObjErrPair GetJsonObject(const QString &raw_jason);
     void ShowJsonParseError(QJsonParseError json_error);
     void SetupCommands(QJsonObject json_obj);
+    QDir OpenConfigDirectory();
+    void WriteDefaultsToStdConfigFile(QFile &stdConfigFile, const QString &settings);
+
+    // singleton
+    explicit Settings(const Settings& rhs);
+    Settings& operator= (const Settings& rhs);
 };
 
 } // namespace
