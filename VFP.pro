@@ -16,13 +16,15 @@ SOURCES += main.cpp\
     View/setuptab.cpp \
     startup.cpp \
     utils.cpp \
-    Model/settings.cpp
+    Model/settings.cpp \
+    Model/provider.cpp
 
 HEADERS  += View/mainview.h \
     View/setuptab.h \
     startup.h \
     utils.h \
-    Model/settings.h
+    Model/settings.h \
+    Model/provider.h
 
 FORMS    += View/mainview.ui \
     View/setuptab.ui

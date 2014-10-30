@@ -3,6 +3,7 @@
 #include "View/setuptab.h"
 #include "utils.h"
 #include "Model/settings.h"
+#include "Model/provider.h"
 
 namespace Ps {
 
@@ -12,7 +13,7 @@ Startup::Startup() :
     m_mainView(*new MainView(NULL, m_setupTab))
 {
     // FIXME remove when done testing
-    Settings my_settings(this, "settings.json");
+    Settings& my_settings = Provider::GetSettingsAsSingleton();
     my_settings.ParseJsonData();
 }
 
