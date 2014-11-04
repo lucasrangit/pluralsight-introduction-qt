@@ -1,7 +1,8 @@
 #pragma once
 #include <QObject>
 
-namespace Ps{
+namespace Ps
+{
 
 class InstSocket;
 
@@ -10,7 +11,8 @@ class Instrument : public QObject
     Q_OBJECT
 public:
     explicit Instrument(QObject *parent, InstSocket& sock);
-    virtual ~Instrument();
+    ~Instrument();
+
     void Connect();
     void Disconnect() const;
     bool IsConnected() const;
@@ -23,7 +25,7 @@ signals:
     void NotifyConnected();
     void NotifyDisconnected();
     void NotifyDataSent(const QString& dataSent);
-    void NotifyDataRead(const QString& dataRead);
+    void NotifyDataReceived(const QString& dataRead);
     void NotifyErrorDetected(const QString& errorMsg);
     void NotifyStatusUpdated(const QString& statusMsg);
 

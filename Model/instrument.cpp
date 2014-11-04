@@ -103,11 +103,11 @@ void Instrument::onReceiveRequest()
     QString input_buffer = m_instSocket.ReadData();
     if (input_buffer.size() == 0)
     {
-        emit NotifyDataRead("No data received.");
+        emit NotifyDataReceived("No data received.");
     }
     else
     {
-        emit NotifyDataRead(input_buffer);
+        emit NotifyDataReceived(input_buffer);
     }
 
 }
