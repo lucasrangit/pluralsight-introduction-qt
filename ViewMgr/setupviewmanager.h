@@ -27,6 +27,8 @@ private:
 
     explicit SetupViewManager(const SetupViewManager& rhs);
     SetupViewManager& operator= (const SetupViewManager& rhs);
+    void WireSettings(Settings &config);
+    void WireHostAndPort();
 };
 
 } // namespace

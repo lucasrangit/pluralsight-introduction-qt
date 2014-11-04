@@ -6,7 +6,7 @@
 #include "Model/provider.h"
 #include "Model/instsocket.h"
 #include "Model/instrument.h"
-
+#include "ViewMgr/setupviewmanager.h"
 
 namespace Ps {
 
@@ -15,11 +15,10 @@ Startup::Startup() :
     m_setupTab(*new SetupTab(NULL)),
     m_mainView(*new MainView(NULL, m_setupTab)),
     m_instrument(new Instrument(this,
-                                *new InstSocket(this)))
+                                *new InstSocket(this))),
+    m_setupVm(new SetupViewManager(this, m_setupTab, *m_instrument,
+                                   Provider::GetSettingsAsSingleton()))
 {
-    // FIXME remove when done testing
-    Settings& my_settings = Provider::GetSettingsAsSingleton();
-    my_settings.ParseJsonData();
 }
 
 Startup::~Startup()

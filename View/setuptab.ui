@@ -241,7 +241,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QTextEdit" name="textInstrumentMessages"/>
+         <widget class="QTextEdit" name="editInstMsgs"/>
         </item>
         <item alignment="Qt::AlignTop">
          <widget class="QPushButton" name="pbClear">
@@ -269,7 +269,7 @@
   <tabstop>cmbCommands</tabstop>
   <tabstop>pbSend</tabstop>
   <tabstop>pbReceive</tabstop>
-  <tabstop>textInstrumentMessages</tabstop>
+  <tabstop>editInstMsgs</tabstop>
   <tabstop>pbClear</tabstop>
  </tabstops>
  <resources>

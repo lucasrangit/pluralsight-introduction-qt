@@ -7,6 +7,7 @@ namespace Ps{
 class MainView;
 class SetupTab;
 class Instrument;
+class SetupViewManager;
 
 class Startup : public QObject
 {
@@ -20,6 +21,7 @@ private:
     SetupTab& m_setupTab;
     MainView& m_mainView;
     Instrument* m_instrument;
+    SetupViewManager *m_setupVm;
 
     // singleton
     explicit Startup(const Startup& rhs);

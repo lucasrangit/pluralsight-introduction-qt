@@ -18,6 +18,13 @@ class Settings : public QObject
 public:
     explicit Settings(QObject *parent, QString filename);
     void ParseJsonData();
+    QString getApplicationName() const { return m_applicationName; }
+    QString getAppShortName() const { return m_appShortName; }
+    QString getHostName() const { return m_hostName; }
+    quint16 getPortNumber() const { return m_portNumber; }
+    int getShortWaitMs() const { return m_tcpShortWaitMs; }
+    int getLongWaitMs() const { return m_tcpLongWaitMs; }
+    QStringListModel& getCommandsAsModel() const { return m_modelCommands; }
 
 signals:
     void NotifyStatusMessage(QString msg);
