@@ -29,6 +29,11 @@ void SetupTab::SetPort(quint16 value)
     emit NotifyPortChanged(value);
 }
 
+void SetupTab::SetCommands(QStringListModel &commands)
+{
+    ui->cmbCommands->addItems(commands.stringList());
+}
+
 void SetupTab::onStatusUpdated(const QString &statusMsg)
 {
     ui->editInstMsgs->append(statusMsg);

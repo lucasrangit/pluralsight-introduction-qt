@@ -19,6 +19,9 @@ public:
 
     ~SetupViewManager();
 
+signals:
+    void NotifyStatusUpdated(const QString& msg);
+
 private:
     SetupTab& m_setupTab;
     Instrument& m_instrument;

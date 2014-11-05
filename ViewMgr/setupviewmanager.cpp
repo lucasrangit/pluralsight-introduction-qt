@@ -22,6 +22,14 @@ SetupViewManager::SetupViewManager(QObject *parent,
     m_setupTab.SetPort(config.getPortNumber());
 
     WireButtons();
+
+    m_setupTab.SetCommands(config.getCommandsAsModel());
+    quint16 long_wait = config.getLongWaitMs();
+    m_instrument.SetLongWaitMs(long_wait);
+    quint16 short_wait = config.getShortWaitMs();
+    m_instrument.SetShortWaitMs(short_wait);
+    emit NotifyStatusUpdated(tr("Long wait ms: %1").arg(long_wait));
+    emit NotifyStatusUpdated(tr("Short wait ms: %1").arg(short_wait));
 }
 
 SetupViewManager::~SetupViewManager()
@@ -49,8 +57,8 @@ void SetupViewManager::WireMessages()
             &m_setupTab, &SetupTab::onStatusUpdated);
     connect(&m_instrument, &Instrument::NotifyStatusUpdated,
             &m_setupTab, &SetupTab::onStatusUpdated);
-//    connect(this, &SetupViewManager::NotifyStatusUpdated,
-//            &m_setupTab, &SetupTab::onStatusUpdated);
+    connect(this, &SetupViewManager::NotifyStatusUpdated,
+            &m_setupTab, &SetupTab::onStatusUpdated);
 }
 
 void SetupViewManager::WireButtons()

@@ -1,7 +1,7 @@
 #ifndef SETUPTAB_H
 #define SETUPTAB_H
-
 #include <QWidget>
+#include <QStringListModel>
 
 namespace Ui {
 class SetupTab;
@@ -19,6 +19,7 @@ public:
 
     void SetHostName(const QString &value);
     void SetPort(quint16 value);
+    void SetCommands(QStringListModel& commands);
 
 signals:
     void NotifyHostNameChanged(const QString& value);
