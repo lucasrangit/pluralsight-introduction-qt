@@ -23,12 +23,13 @@ private:
     SetupTab& m_setupTab;
     Instrument& m_instrument;
 
-
+    void WireSettings(Settings &config);
+    void WireHostAndPort();
+    void WireMessages();
+    void WireButtons();
 
     explicit SetupViewManager(const SetupViewManager& rhs);
     SetupViewManager& operator= (const SetupViewManager& rhs);
-    void WireSettings(Settings &config);
-    void WireHostAndPort();
 };
 
 } // namespace

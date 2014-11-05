@@ -34,6 +34,26 @@ void SetupTab::onStatusUpdated(const QString &statusMsg)
     ui->editInstMsgs->append(statusMsg);
 }
 
+void SetupTab::onConnected()
+{
+    ui->editInstMsgs->append(tr("Connected"));
+}
+
+void SetupTab::onDisconnected()
+{
+    ui->editInstMsgs->append(tr("Disconnected"));
+}
+
+void SetupTab::onDataSent(const QString &dataSent)
+{
+    ui->editInstMsgs->append("Data sent: " + dataSent);
+}
+
+void SetupTab::onDataReceived(const QString &dataReceived)
+{
+    ui->editInstMsgs->append("Data received: " + dataReceived);
+}
+
 void SetupTab::on_editIpAddress_editingFinished()
 {
   emit NotifyHostNameChanged(ui->editIpAddress->text());
@@ -51,6 +71,31 @@ void SetupTab::on_editPort_editingFinished()
     {
         emit NotifyPortChanged(result);
     }
+}
+
+void SetupTab::on_btnConnect_clicked()
+{
+    emit NotifyConnectClicked();
+}
+
+void SetupTab::on_btnDisconnect_clicked()
+{
+    emit NotifyDisconnectClicked();
+}
+
+void SetupTab::on_pbSend_clicked()
+{
+    emit NotifySendClicked(ui->cmbCommands->currentText());
+}
+
+void SetupTab::on_pbReceive_clicked()
+{
+    emit NotifyReceiveClicked();
+}
+
+void SetupTab::on_pbClear_clicked()
+{
+   ui->editInstMsgs->clear();
 }
 
 

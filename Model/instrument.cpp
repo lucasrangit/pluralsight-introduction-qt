@@ -71,7 +71,7 @@ void Instrument::Disconnect() const
 {
     if (m_instSocket.isOpen())
     {
-            m_instSocket.Disconnect();
+        m_instSocket.Disconnect();
     }
 }
 
@@ -93,7 +93,7 @@ quint16 Instrument::GetPort() const
 void Instrument::onSendRequest(const QString &dataToSend)
 {
     m_lastCommandSent = dataToSend;
-    qDebug() << "Instrument ready to send data: " << dataToSend;
+    qDebug() << "Instrument ready to send data:" << dataToSend;
     m_instSocket.WriteData(dataToSend);
     emit NotifyDataSent(dataToSend);
 }

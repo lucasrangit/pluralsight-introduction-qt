@@ -23,14 +23,26 @@ public:
 signals:
     void NotifyHostNameChanged(const QString& value);
     void NotifyPortChanged(quint16 value);
+    void NotifyConnectClicked();
+    void NotifyDisconnectClicked();
+    void NotifySendClicked(const QString& dataToSend);
+    void NotifyReceiveClicked();
 
 public slots:
     void onStatusUpdated(const QString& statusMsg);
+    void onConnected();
+    void onDisconnected();
+    void onDataSent(const QString& dataSent);
+    void onDataReceived(const QString& dataReceived);
 
 private slots:
     void on_editIpAddress_editingFinished();
-
     void on_editPort_editingFinished();
+    void on_btnConnect_clicked();
+    void on_btnDisconnect_clicked();
+    void on_pbSend_clicked();
+    void on_pbReceive_clicked();
+    void on_pbClear_clicked();
 
 private:
     Ui::SetupTab *ui;
