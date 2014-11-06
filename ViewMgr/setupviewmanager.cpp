@@ -21,6 +21,8 @@ SetupViewManager::SetupViewManager(QObject *parent,
     m_setupTab.SetHostName(config.getHostName());
     m_setupTab.SetPort(config.getPortNumber());
 
+    WireMessages();
+
     WireButtons();
 
     m_setupTab.SetCommands(config.getCommandsAsModel());
@@ -30,11 +32,31 @@ SetupViewManager::SetupViewManager(QObject *parent,
     m_instrument.SetShortWaitMs(short_wait);
     emit NotifyStatusUpdated(tr("Long wait ms: %1").arg(long_wait));
     emit NotifyStatusUpdated(tr("Short wait ms: %1").arg(short_wait));
+
+    WireDisplayUpdate();
+
+    onDisconnected();
 }
 
 SetupViewManager::~SetupViewManager()
 {
-  Utils::DestructorMsg(this);
+    Utils::DestructorMsg(this);
+}
+
+void SetupViewManager::onConnected()
+{
+    emit NotifyConnectEnabled(false);
+    emit NotifyDisconnectEnabled(true);
+    emit NotifyDirectCommandsEnabled(true);
+    emit NotifyControlTabEnabled(true);
+}
+
+void SetupViewManager::onDisconnected()
+{
+    emit NotifyConnectEnabled(true);
+    emit NotifyDisconnectEnabled(false);
+    emit NotifyDirectCommandsEnabled(false);
+    emit NotifyControlTabEnabled(false);
 }
 
 void SetupViewManager::WireSettings(Settings& config)
@@ -67,11 +89,15 @@ void SetupViewManager::WireButtons()
             &m_instrument, &Instrument::Connect);
     connect(&m_instrument, &Instrument::NotifyConnected,
             &m_setupTab, &SetupTab::onConnected);
+    connect(&m_instrument, &Instrument::NotifyConnected,
+            this, &SetupViewManager::onConnected);
 
     connect(&m_setupTab, &SetupTab::NotifyDisconnectClicked,
             &m_instrument, &Instrument::Disconnect);
     connect(&m_instrument, &Instrument::NotifyDisconnected,
             &m_setupTab, &SetupTab::onDisconnected);
+    connect(&m_instrument, &Instrument::NotifyDisconnected,
+            this, &SetupViewManager::onDisconnected);
 
     connect(&m_setupTab, &SetupTab::NotifySendClicked,
             &m_instrument, &Instrument::onSendRequest);
@@ -80,6 +106,20 @@ void SetupViewManager::WireButtons()
 
     connect(&m_instrument, &Instrument::NotifyDataReceived,
             &m_setupTab, &SetupTab::onDataReceived);
+    connect(&m_instrument, &Instrument::NotifyDataSent,
+            &m_setupTab, &SetupTab::onDataSent);
+}
+
+void SetupViewManager::WireDisplayUpdate()
+{
+    connect(this, &SetupViewManager::NotifyConnectEnabled,
+            &m_setupTab, &SetupTab::onConnectEnabled);
+    connect(this, &SetupViewManager::NotifyDisconnectEnabled,
+            &m_setupTab, &SetupTab::onDisconnectEnabled);
+    connect(this, &SetupViewManager::NotifyDirectCommandsEnabled,
+            &m_setupTab, &SetupTab::onDirectCommandsEnabled);
+    connect(this, &SetupViewManager::NotifyControlTabEnabled,
+            &m_setupTab, &SetupTab::onControlTabEnabled);
 }
 
 } // namespace

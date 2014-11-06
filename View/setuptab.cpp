@@ -31,7 +31,7 @@ void SetupTab::SetPort(quint16 value)
 
 void SetupTab::SetCommands(QStringListModel &commands)
 {
-    ui->cmbCommands->addItems(commands.stringList());
+    ui->cmbCommands->setModel(&commands);
 }
 
 void SetupTab::onStatusUpdated(const QString &statusMsg)
@@ -57,6 +57,26 @@ void SetupTab::onDataSent(const QString &dataSent)
 void SetupTab::onDataReceived(const QString &dataReceived)
 {
     ui->editInstMsgs->append("Data received: " + dataReceived);
+}
+
+void SetupTab::onConnectEnabled(bool isEnabled)
+{
+   ui->btnConnect->setEnabled(isEnabled);
+}
+
+void SetupTab::onDisconnectEnabled(bool isEnabled)
+{
+    ui->btnDisconnect->setEnabled(isEnabled);
+}
+
+void SetupTab::onDirectCommandsEnabled(bool isEnabled)
+{
+    ui->cmbCommands->setEnabled(isEnabled);
+}
+
+void SetupTab::onControlTabEnabled(bool isEnabled)
+{
+    // TODO
 }
 
 void SetupTab::on_editIpAddress_editingFinished()

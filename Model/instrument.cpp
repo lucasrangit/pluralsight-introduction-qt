@@ -53,7 +53,7 @@ void Instrument::Connect()
     bool connected = m_instSocket.Connect();
     if (!connected)
     {
-        emit NotifyErrorDetected("ERROR: Did not connect to ");
+        emit NotifyErrorDetected(tr("ERROR: Did not connect to %1").arg(this->m_instSocket.GetHostName()));
     }
 }
 
