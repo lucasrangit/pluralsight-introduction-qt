@@ -35,7 +35,8 @@ HEADERS  += View/mainview.h \
     View/controltab.h
 
 FORMS    += View/mainview.ui \
-    View/setuptab.ui
+    View/setuptab.ui \
+    View/controltab.ui
 
 OTHER_FILES +=
 

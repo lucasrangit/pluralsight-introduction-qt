@@ -74,11 +74,6 @@ void SetupTab::onDirectCommandsEnabled(bool isEnabled)
     ui->cmbCommands->setEnabled(isEnabled);
 }
 
-void SetupTab::onControlTabEnabled(bool isEnabled)
-{
-    // TODO
-}
-
 void SetupTab::on_editIpAddress_editingFinished()
 {
   emit NotifyHostNameChanged(ui->editIpAddress->text());

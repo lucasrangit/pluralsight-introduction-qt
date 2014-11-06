@@ -6,6 +6,7 @@ namespace Ps{
 
 class MainView;
 class SetupTab;
+class ControlTab;
 class Instrument;
 class SetupViewManager;
 
@@ -19,6 +20,7 @@ public:
 
 private:
     SetupTab& m_setupTab;
+    ControlTab& m_controlTab;
     MainView& m_mainView;
     Instrument* m_instrument;
     SetupViewManager *m_setupVm;

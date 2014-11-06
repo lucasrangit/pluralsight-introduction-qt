@@ -1,5 +1,6 @@
 #include "setupviewmanager.h"
 #include "View/setuptab.h"
+#include "View/controltab.h"
 #include "Model/instrument.h"
 #include "Model/settings.h"
 #include "utils.h"
@@ -8,10 +9,12 @@ namespace Ps
 {
 SetupViewManager::SetupViewManager(QObject *parent,
                                    SetupTab &tab,
+                                   ControlTab &controlTab,
                                    Instrument &inst,
                                    Settings &config) :
     QObject(parent),
     m_setupTab(tab),
+    m_controlTab(controlTab),
     m_instrument(inst)
 {
     WireSettings(config);
@@ -119,7 +122,7 @@ void SetupViewManager::WireDisplayUpdate()
     connect(this, &SetupViewManager::NotifyDirectCommandsEnabled,
             &m_setupTab, &SetupTab::onDirectCommandsEnabled);
     connect(this, &SetupViewManager::NotifyControlTabEnabled,
-            &m_setupTab, &SetupTab::onControlTabEnabled);
+            &m_controlTab, &ControlTab::onControlTabEnabled);
 }
 
 } // namespace

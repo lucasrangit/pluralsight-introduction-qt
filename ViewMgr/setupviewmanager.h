@@ -5,6 +5,7 @@ namespace Ps
 {
 
 class SetupTab;
+class ControlTab;
 class Instrument;
 class Settings;
 
@@ -14,6 +15,7 @@ class SetupViewManager : public QObject
 public:
     explicit SetupViewManager(QObject *parent,
                               SetupTab& tab,
+                              ControlTab& controlTab,
                               Instrument& inst,
                               Settings& config);
 
@@ -32,6 +34,7 @@ private slots:
 
 private:
     SetupTab& m_setupTab;
+    ControlTab& m_controlTab;
     Instrument& m_instrument;
 
     void WireSettings(Settings &config);

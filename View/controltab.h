@@ -1,20 +1,29 @@
-#pragma once
+#ifndef CONTROLTAB_H
+#define CONTROLTAB_H
+
 #include <QWidget>
 
-namespace Ps{
+namespace Ui {
+class ControlTab;
+}
+
+namespace Ps {
+
 class ControlTab : public QWidget
 {
     Q_OBJECT
+
 public:
-    explicit ControlTab(QWidget *parent=0);
+    explicit ControlTab(QWidget *parent = 0);
+    ~ControlTab();
+
+public slots:
+    void onControlTabEnabled(bool isEnabled);
 
 private:
-
-
-    explicit ControlTab(const ControlTab& rhs);
-    ControlTab& operator= (const ControlTab& rhs);
+    Ui::ControlTab *ui;
 };
-}
 
+} // namespace
 
-
+#endif // CONTROLTAB_H

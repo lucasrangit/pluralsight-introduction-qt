@@ -38,8 +38,6 @@ public slots:
     void onConnectEnabled(bool isEnabled);
     void onDisconnectEnabled(bool isEnabled);
     void onDirectCommandsEnabled(bool isEnabled);
-    // belongs in ControlTab class
-    void onControlTabEnabled(bool isEnabled);
 
 private slots:
     void on_editIpAddress_editingFinished();
