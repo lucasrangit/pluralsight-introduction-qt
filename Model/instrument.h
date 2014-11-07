@@ -5,12 +5,13 @@ namespace Ps
 {
 
 class InstSocket;
+class Settings;
 
 class Instrument : public QObject
 {
     Q_OBJECT
 public:
-    explicit Instrument(QObject *parent, InstSocket& sock);
+    explicit Instrument(QObject *parent, InstSocket& sock, Settings &config);
     ~Instrument();
 
     void Connect();
@@ -36,10 +37,12 @@ public slots:
     void onDisconnected();
     void onSendRequest(const QString& dataToSend);
     void onReceiveRequest();
+    void onPulseWidthChanged(double value);
 
 private:
     InstSocket& m_instSocket;
     QString m_lastCommandSent;
+    Settings& m_settings;
 
     void WireConnections();
 

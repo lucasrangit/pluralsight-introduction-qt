@@ -103,12 +103,12 @@ void SetupTab::on_btnDisconnect_clicked()
     emit NotifyDisconnectClicked();
 }
 
-void SetupTab::on_pbSend_clicked()
+void SetupTab::on_btnSend_clicked()
 {
     emit NotifySendClicked(ui->cmbCommands->currentText());
 }
 
-void SetupTab::on_pbReceive_clicked()
+void SetupTab::on_btnReceive_clicked()
 {
     emit NotifyReceiveClicked();
 }

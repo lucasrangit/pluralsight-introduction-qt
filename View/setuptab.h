@@ -44,8 +44,8 @@ private slots:
     void on_editPort_editingFinished();
     void on_btnConnect_clicked();
     void on_btnDisconnect_clicked();
-    void on_pbSend_clicked();
-    void on_pbReceive_clicked();
+    void on_btnSend_clicked();
+    void on_btnReceive_clicked();
     void on_pbClear_clicked();
 
 private:

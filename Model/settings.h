@@ -25,6 +25,7 @@ public:
     int getShortWaitMs() const { return m_tcpShortWaitMs; }
     int getLongWaitMs() const { return m_tcpLongWaitMs; }
     QStringListModel& getCommandsAsModel() const { return m_modelCommands; }
+    QString GetPwCommand() const { return m_pwCommand; }
 
 signals:
     void NotifyStatusMessage(QString msg);
@@ -38,6 +39,7 @@ private:
     qint64 m_tcpLongWaitMs;
     qint64 m_tcpShortWaitMs;
     QStringListModel& m_modelCommands;
+    QString m_pwCommand;
 
     QString ReadJsonFile();
     QString ReadJsonFileFromInternalResource();

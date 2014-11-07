@@ -24,4 +24,10 @@ void ControlTab::onControlTabEnabled(bool isEnabled)
     qDebug() << "control tab enabled slot called with" << isEnabled;
 }
 
+void ControlTab::on_dsbPulseWidth_valueChanged(double arg1)
+{
+   emit NotifyPulseWidthChanged(arg1);
+}
+
 } // namespace
+

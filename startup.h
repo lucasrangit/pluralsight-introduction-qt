@@ -9,6 +9,7 @@ class SetupTab;
 class ControlTab;
 class Instrument;
 class SetupViewManager;
+class ControlTabViewManager;
 
 class Startup : public QObject
 {
@@ -24,6 +25,7 @@ private:
     MainView& m_mainView;
     Instrument* m_instrument;
     SetupViewManager *m_setupVm;
+    ControlTabViewManager *m_controlVm;
 
     // singleton
     explicit Startup(const Startup& rhs);

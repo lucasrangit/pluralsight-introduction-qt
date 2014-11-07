@@ -17,8 +17,14 @@ public:
     explicit ControlTab(QWidget *parent = 0);
     ~ControlTab();
 
+signals:
+    void NotifyPulseWidthChanged(double value);
+
 public slots:
     void onControlTabEnabled(bool isEnabled);
+
+private slots:
+    void on_dsbPulseWidth_valueChanged(double arg1);
 
 private:
     Ui::ControlTab *ui;

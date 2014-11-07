@@ -2,14 +2,16 @@
 #include "instrument.h"
 #include "Model/instsocket.h"
 #include "utils.h"
-
+#include "Model/settings.h"
 
 namespace Ps
 {
-Instrument::Instrument(QObject *parent, InstSocket& sock) :
+
+Instrument::Instrument(QObject *parent, InstSocket& sock, Settings& config) :
     QObject(parent),
     m_instSocket(sock),
-    m_lastCommandSent("")
+    m_lastCommandSent(""),
+    m_settings(config)
 {
     WireConnections();
 }
@@ -110,6 +112,12 @@ void Instrument::onReceiveRequest()
         emit NotifyDataReceived(input_buffer);
     }
 
+}
+
+void Instrument::onPulseWidthChanged(double value)
+{
+    // TODO
+    qDebug() << "Pulse width changed" << value;
 }
 
 } // namespace
