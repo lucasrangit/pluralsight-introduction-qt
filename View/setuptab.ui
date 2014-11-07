@@ -174,7 +174,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pbSend">
+         <widget class="QPushButton" name="btnSend">
           <property name="text">
            <string>Send</string>
           </property>
@@ -201,7 +201,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pbReceive">
+         <widget class="QPushButton" name="btnReceive">
           <property name="text">
            <string>Receive</string>
           </property>
@@ -267,8 +267,8 @@
   <tabstop>editIpAddress</tabstop>
   <tabstop>editPort</tabstop>
   <tabstop>cmbCommands</tabstop>
-  <tabstop>pbSend</tabstop>
-  <tabstop>pbReceive</tabstop>
+  <tabstop>btnSend</tabstop>
+  <tabstop>btnReceive</tabstop>
   <tabstop>editInstMsgs</tabstop>
   <tabstop>pbClear</tabstop>
  </tabstops>

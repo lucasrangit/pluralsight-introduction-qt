@@ -72,6 +72,8 @@ void SetupTab::onDisconnectEnabled(bool isEnabled)
 void SetupTab::onDirectCommandsEnabled(bool isEnabled)
 {
     ui->cmbCommands->setEnabled(isEnabled);
+    ui->btnSend->setEnabled(isEnabled);
+    ui->btnReceive->setEnabled(isEnabled);
 }
 
 void SetupTab::on_editIpAddress_editingFinished()
