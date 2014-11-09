@@ -2,6 +2,7 @@
 #include "ui_mainview.h"
 #include "View/setuptab.h"
 #include "View/controltab.h"
+#include "View/aboutbox.h"
 #include "utils.h"
 
 namespace Ps {
@@ -36,7 +37,9 @@ void MainView::on_action_Exit_triggered()
 
 void MainView::on_action_About_triggered()
 {
-    // TODO show about dialog
+    AboutBox about_box;
+    about_box.show();
+    about_box.exec();
 }
 
 } // namespace
