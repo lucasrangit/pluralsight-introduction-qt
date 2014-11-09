@@ -29,4 +29,14 @@ MainView::~MainView()
     delete ui;
 }
 
+void MainView::on_action_Exit_triggered()
+{
+   QApplication::quit();
+}
+
+void MainView::on_action_About_triggered()
+{
+    // TODO show about dialog
+}
+
 } // namespace
