@@ -37,8 +37,6 @@ SetupViewManager::SetupViewManager(QObject *parent,
     emit NotifyStatusUpdated(tr("Short wait ms: %1").arg(short_wait));
 
     WireDisplayUpdate();
-
-    onDisconnected();
 }
 
 SetupViewManager::~SetupViewManager()

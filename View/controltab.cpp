@@ -18,6 +18,11 @@ ControlTab::~ControlTab()
     delete ui;
 }
 
+void ControlTab::EnablePanel(bool isEnabled)
+{
+    ui->ControlTabPanel->setEnabled(isEnabled);
+}
+
 void ControlTab::onControlTabEnabled(bool isEnabled)
 {
     // TODO

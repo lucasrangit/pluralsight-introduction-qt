@@ -75,6 +75,7 @@ void Instrument::Disconnect() const
     {
         m_instSocket.Disconnect();
     }
+    emit NotifyDisconnected();
 }
 
 void Instrument::onDisconnected()
@@ -116,8 +117,10 @@ void Instrument::onReceiveRequest()
 
 void Instrument::onPulseWidthChanged(double value)
 {
-    // TODO
-    qDebug() << "Pulse width changed" << value;
+    QString pw_cmd = m_settings.GetPwCommand() + "%1;";
+    QString full_command = pw_cmd.arg(value);
+    m_instSocket.WriteData(full_command);
+    emit NotifyStatusUpdated(full_command);
 }
 
 } // namespace

@@ -141,6 +141,7 @@ void Settings::SetupCommands(QJsonObject json_obj)
     QModelIndex index = m_modelCommands.index(PW_COMMAND_INDEX);
     QVariant test_cmd = m_modelCommands.data(index, Qt::DisplayRole);
     qDebug() << "Test command" << test_cmd.toString();
+
     if (PW_COMMAND_INDEX < cmd_list.size())
     {
         m_pwCommand = cmd_list[PW_COMMAND_INDEX];

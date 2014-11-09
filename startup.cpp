@@ -28,8 +28,10 @@ Startup::Startup() :
                                    *m_instrument,
                                    Provider::GetSettingsAsSingleton())),
     m_controlVm(new ControlTabViewManager(this,
-                                          m_controlTab))
+                                          m_controlTab,
+                                          *m_instrument))
 {
+    m_instrument->Disconnect();
 }
 
 Startup::~Startup()
