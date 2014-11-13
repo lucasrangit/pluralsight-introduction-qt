@@ -12,8 +12,6 @@ public:
     static Settings& GetSettingsAsSingleton();
 
 private:
-    static std::auto_ptr<Settings> m_instanceSettings;
-
     explicit Provider(const Provider& rhs);
     Provider& operator= (const Provider& rhs);
 };
